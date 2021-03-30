@@ -1,0 +1,191 @@
+body{
+            padding: 100px;
+        }
+        .clear{
+            clear: both;
+        }
+        
+        #container{
+            height: 400px;
+            width: 550px;
+            background-color: #9dd2ea;
+            margin: 100px auto;
+            border-radius:10px;
+            padding: 20px;
+            box-shadow: 0px 4px 0px 0px #009de4;
+            position: relative;
+        }
+        #score{
+            background-color: #f1ff92;
+            color: ##888e5f;
+            padding: 10px;
+            text-align: center;
+            box-shadow: 0px 4px 0px 0px #9da853;
+            position:absolute;
+            left:500px;
+        }
+        #area{
+            background-color: #9da0ea;
+/*            position: absolute;*/
+            margin: 50px auto 10px auto;
+            width:450px;
+            height: 150px;
+            box-shadow: 0px 4px 0px 0px #535aa8;
+            font-size: 100px;
+            text-align: center;
+            font-family: cursive, sans-serif;
+        }
+        
+        #click{
+            background-color: #b481d9;
+            margin: 10px auto 10px auto;
+            width:450px;
+            height: 50px;
+            box-shadow: 0px 4px 0px 0px #8153a8;
+            text-align: center;
+            line-height: 50px;
+        }
+        
+        #sections{
+            width:450px;
+            height: 100px;
+            margin: 5px auto;
+        }
+        
+        #start{
+            width: 100px;
+            padding: 10px;
+/*            line-height: 35px;*/
+            background-color: lightgray;
+/*            height: 35px;*/
+            margin: 0px auto;
+            text-align: center;
+            box-shadow: 0px 4px 4px 0px grey;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        #start:hover{
+            width: 100px;
+/*            line-height: 35px;*/
+            background-color: #9c89f6;
+/*            height: 35px;*/
+            margin: 1px auto;
+            text-align: center;
+            box-shadow: 0px 4px 4px 0px #6b54d3;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        #start:active{
+            width: 100px;
+/*            line-height: 35px;*/
+            background-color: lightgreen;
+/*            height: 35px;*/
+            margin: 1px auto;
+            text-align: center;
+            box-shadow: 0px 4px 4px 0px green;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+html {
+    height: 100%;
+    background: radial-gradient(circle, white, #ccc);
+}
+
+#correct {
+    position: absolute;
+    left: 260px;
+    background-color: #42e252;
+    color: white;
+    padding: 10px;
+    display: none;
+}
+
+#wrong {
+    position: absolute;
+    left: 260px;
+    background-color: #de401a;
+    color: white;
+    padding: 10px;
+    display: none;
+}
+
+.box {
+    width: 85px;
+    height: 85px;
+    background-color: white;
+    box-shadow: 0px 4px 4px 0px grey;
+    float: left;
+    margin-right: 36px;
+    border-radius: 10px;
+    text-align: center;
+    line-height: 85px;
+    cursor: pointer;
+}
+
+#box1 {
+    
+}
+
+#box4 {
+    margin-right: 0px;
+}
+
+#timer {
+    position: absolute;
+    background-color: orange;
+    box-shadow: 0px 4px 0px 0px grey;
+    left: 400px;
+    padding: 8px;
+/*    margin-top: -35px;*/
+    top: 395px;
+    border-radius: 10px;
+    display: none;
+}
+
+.box:hover{
+    width: 85px;
+    height: 85px;
+    background-color: #9c89f6;
+    box-shadow: 0px 4px 4px 0px #6b54d3;
+    float: left;
+    margin-right: 36px;
+    border-radius: 10px;
+    text-align: center;
+    text-align: center;
+    line-height: 85px;
+    cursor: pointer;
+    color: white;
+}
+
+.box:active {
+    width: 85px;
+    height: 85px;
+    background-color: lightgreen;
+    box-shadow: 0px 4px 4px 0px green;
+    float: left;
+    margin-right: 36px;
+    border-radius: 10px;
+    text-align: center;
+    text-align: center;
+    line-height: 85px;
+    cursor: pointer;
+    color: black;
+}
+
+#endgame {
+    position: absolute;
+    background: linear-gradient(#f3ca6b, #f3706c);
+/*    margin: 0 auto;*/
+    left:50px;
+    top:100px;
+    width:380px;
+    height: 150px;
+    text-align: center;
+    font-size: 40px;
+    padding: 30px 60px;
+    line-height: 70px;
+    color: white;
+    text-transform: uppercase;
+    z-index: 2;
+    display: none;
+}

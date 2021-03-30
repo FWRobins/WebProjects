@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+	<meta charset="utf-8">
+	<title>Speed Reader App</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" type="image/x-icon" href=""/>
+	
+<!--	jquery moblie cdn-->
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    
+    <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+<!--page 1-->
+	<div id="page1" data-role="page" data-theme="a">
+    
+        
+
+        <div role="main" class="ui-content">
+            <div class="header">
+                <h1>Speed Reader App</h1>
+                <p>for an effecient reading experience</p>
+            </div>
+            
+            
+            
+<!--            div for error messages-->
+          <div id="error">Please paste text in the box</div>
+          
+          
+          
+<!--          all butons-->
+<!--        size and speed sliders-->
+         <div id="inputs" class="ui-grid-a">
+             <div class="ui-block-a">
+                 <div>FONT SIZE <span id="fontsize">50</span> px</div>                 
+             </div>
+             <div class="ui-block-b">
+                 <div><span id="wpm">300</span> WORDS PER MINUTE</div>                
+             </div>
+        </div>
+          <div id="inputs" class="ui-grid-a">
+             <div class="ui-block-a">
+                 <form class="full-width-slider">
+                    <input type="range" name="fontsizeslider" id="fontsizeslider" min="20" max="100" value="50" step="5" data-highlight="true">
+                </form>                 
+             </div>
+             <div class="ui-block-b">
+                 <form class="full-width-slider">
+                    <input type="range" name="wpmslider" id="wpmslider" min="50" max="600" value="300" step="50" data-highlight="true">
+                </form>                 
+             </div>
+             
+<!--        progress slider-->
+        <div>
+         <form class="full-width-slider">
+            <label for="progressslider" class="">Progress: <span id="progress">0</span>%</label>
+            <input type="range" name="progressslider" id="progressslider" min="0" max="100" value="50" data-highlight="true">
+        </form> 
+       </div>      
+              
+        </div>
+        
+
+        
+<!--        word reading box-->
+        <div id="result"></div>
+        
+<!--        all buttons-->
+        <div>      
+             <textarea name="userinput" id="userinput" cols="30" rows="10"></textarea>
+               <a data-role="button" id="start">Start reading</a>
+               <a data-role="button" id="new">New</a>
+               <a data-role="button" id="resume">Resume</a>
+            <a data-role="button" id="pause">Pause</a>
+        </div>    
+
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#page1" data-transition="pop" data-icon="home" class="ui-btn-active ui-state-persist">Home</a></li>
+                    <li><a href="#page2" data-icon="info"  data-transition="pop" >About</a></li>
+                    <li><a href="#page3" data-icon="mail"  data-transition="pop" >Contact</a></li>
+
+                </ul>
+            </div>
+        </div>
+	    
+	</div>	
+    </div>
+	
+<!--	page 2-->
+	<div id="page2" data-role="page" data-theme="a">
+    
+        <div data-role="header">
+            
+        </div>
+
+<!--       list views-->
+        <div role="main" class="ui-content">
+            
+            <ul data-role="listview" data-filter="true">
+                <li data-role="list-divider">
+                Main Information</li>
+                <li><a href=""><img src="logo.png" class="ui-li-icon" alt="">Company details</a></li>
+                <li><a href=""><img src="logo.png" class="ui-li-icon" alt="">Company history</a></li>
+                <li data-role="list-divider">Branches</li>
+                <li><a href=""><img src="logo.png" alt=""><h2>London</h2><p>Sales and Management team</p></a></li>
+                <li><a href=""><img src="logo.png" alt=""><h2>Bedfors</h2><p>Development team</p></a></li>
+                <li data-role="list-divider">Achievements</li>
+                <li><a href="">Our Porfolio 1</a></li>
+                <li><a href="">Our Porfolio 2</a></li>
+            </ul>
+
+        </div>
+
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#page1" data-transition="pop" data-icon="home" >Home</a></li>
+                    <li><a href="#page2" data-icon="info"  data-transition="pop" class="ui-btn-active ui-state-persist">About</a></li>
+                    <li><a href="#page3" data-icon="mail"  data-transition="pop" >Contact</a></li>
+
+                </ul>
+            </div>
+        </div>
+	    
+	</div>
+	
+<!--	page 3-->
+	<div id="page3" data-role="page" data-theme="a">
+    
+        <div data-role="header">
+            
+        </div>
+        
+<!--        grid system-->
+        <div class="ui-grid-b">
+            <div role="main" class="ui-content ui-block-a">
+                <a href="" data-role="button" data-transition="pop">Email</a>
+                <p>Some stext here. Some stext here. Some stext here. Some stext here. Some stext here. Some stext here. Some stext here. </p>
+            </div>
+            <div role="main" class="ui-content ui-block-b">
+                <a href="" data-role="button" data-transition="pop">Live chat</a>
+                <p>Some stext here.Some stext here. Some stext here. Some stext here. Some stext here. Some stext here. Some stext here. </p>
+            </div>
+            <div role="main" class="ui-content ui-block-c">
+                <a href="" data-role="button" data-transition="pop">Phone</a>
+                <p>Some stext here.Some stext here. Some stext here. Some stext here. Some stext here. Some stext here. Some stext here. </p>
+            </div>
+        </div>
+        
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#page1" data-transition="pop" data-icon="home" >Home</a></li>
+                    <li><a href="#page2" data-icon="info"  data-transition="pop" >About</a></li>
+                    <li><a href="#page3" data-icon="mail"  data-transition="pop" class="ui-btn-active ui-state-persist">Contact</a></li>
+
+                </ul>
+            </div>
+        </div>
+	    
+	</div>
+	
+<!--	page custom scripts-->
+	<script src="index.js"></script>
+	
+</body>
+
+</html>

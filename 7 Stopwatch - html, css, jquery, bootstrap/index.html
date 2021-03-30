@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Stopwatch</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Arvo&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="styling.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  
+</head>
+<body>
+
+
+
+<div class="container-fluid">
+    
+    <div id="header" class="jumbotron">
+        
+        <p>Stopwatch</p>
+
+    </div>
+
+   
+
+    <div id="lap">
+        <p>
+        <span id="lapminute">00</span>:<span id="lapsecond">00</span>:<span id="lapCsecond">00</span>
+        </p>
+    </div>
+
+    <div id="main">
+        <p>
+        <span id="mainminute">00</span>:<span id="mainsecond">00</span>:<span id="mainCsecond">00</span>
+        </p>
+
+    </div>
+
+    <div id="controlsContainer" class="row offset-4">
+        <div class="col-xs-2 ">
+            <div id="startButton" class="control">Start</div>
+        </div>
+        <div class="col-xs-2 ">
+            <div id="stopButton" class="control">Stop</div>
+        </div>
+        <div class="col-xs-2 ">
+            <div id="resumeButton" class="control">Resume</div>
+        </div>
+        <div class="col-xs-2 ">
+            <div id="lapButton" class="control">Lap</div>
+        </div>
+        <div class="col-xs-2 ">
+            <div id="resetButton" class="control">Reset</div>
+        </div>
+
+    </div>
+
+    <div id="mylaps">
+    
+<!--
+    <div class="lap">
+        <div class="laptimetitle">
+            lap0
+        </div>
+        <div class="laptime">
+            <span>00</span>:<span>00</span>:<span>00</span>
+        </div>
+    </div>
+-->
+
+    </div>
+
+</div>
+
+<script>
+    
+    $(function(){
+        var running = false;
+        var timeCounter = 0;
+        var lapCounter = 0;
+        var action;
+        var lapNumber = 0;
+        
+        var timeMinutes, timeSeconds, timeCentiSeconds, lapMinutes, lapSeconds, lapCentiSeconds;
+        
+        hideShowButtons("#startButton", "#lapButton");
+        
+        $('#startButton').click(function(){
+            running = true;
+            hideShowButtons("#stopButton", "#lapButton");
+            startAction();
+            
+        });
+        
+        $('#stopButton').click(function(){
+            hideShowButtons("#resumeButton", "#resetButton");
+            stopAction();
+            
+        });
+        
+        $('#resumeButton').click(function(){
+            hideShowButtons("#stopButton", "#lapButton");
+            startAction();
+        });
+        
+        $('#resetButton').click(function(){
+            location.reload();
+        });
+        
+        $('#lapButton').click(function(){
+            if (running == true){
+                stopAction();
+                lapCounter = 0;
+                addLap();
+                startAction();
+            };
+            
+        });
+        
+        function hideShowButtons(x, y){
+            $('.control').hide();
+            $(x).show();
+            $(y).show();
+        };
+        
+        function startAction(){
+            action = setInterval(function(){
+                timeCounter++;
+                if (timeCounter == 100*60*100){
+                    timeCounter = 0;
+                };
+                lapCounter++;
+                if (lapCounter == 100*60*100){
+                    lapCounter = 0;
+                };
+                updateTime();
+            },10);   
+        };
+        
+        function updateTime(){
+            timeMinutes = Math.floor(timeCounter/6000);
+            timeSeconds = Math.floor((timeCounter%6000)/100);
+            timeCentiSeconds = (timeCounter%6000)%100;
+            
+            $("#mainminute").text(format(timeMinutes));
+            $("#mainsecond").text(format(timeSeconds));
+            $("#mainCsecond").text(format(timeCentiSeconds));
+            
+            lapMinutes = Math.floor(lapCounter/6000);
+            lapSeconds = Math.floor((lapCounter%6000)/100);
+            lapCentiSeconds = (lapCounter%6000)%100;
+            
+            $("#lapminute").text(format(lapMinutes));
+            $("#lapsecond").text(format(lapSeconds));
+            $("#lapCsecond").text(format(lapCentiSeconds));
+        };
+        
+        function format(number){
+            if (number < 10){
+                return '0'+ number;
+            } else{
+                return number;
+            };
+        };
+        
+        function stopAction(){
+            clearInterval(action);
+        };
+        
+        function addLap(){
+            lapNumber++;
+            var myLap = '<div class="lap">'+
+            '<div class="laptimetitle">'+
+                'Lap'+lapNumber+
+            '</div>'+
+            '<div class="laptime">'+
+            '<span>'+format(lapMinutes)+'</span>:<span>'+format(lapSeconds)+'</span>:<span>'+format(lapCentiSeconds)+'</span>'+
+            '</div>'+
+        '</div>';
+            $(myLap).appendTo("#mylaps");
+        };        
+        
+    });
+
+
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Drawing App</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<!--  <link href="https://fonts.googleapis.com/css2?family=Arvo&display=swap" rel="stylesheet">-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="styling.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/start/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  
+</head>
+<body>
+
+<div id="header">
+    Drawing App
+</div>
+
+<div class="inputContainer">
+   <div class="input" id="colourInput">
+       <input type="color" list id="paintColour"> 
+   </div>
+   <div class="input" id="thicknessInput">
+       <div id="circle"></div>
+   </div>
+   <div class="input" id="colourInput">
+       <div id="slider"></div>
+   </div>    
+</div>
+
+<div id="container">
+       <canvas id="paint" width="500px" height="400px"></canvas>
+</div>
+
+<div class="inputContainer2">
+    <div class="input2">
+        <span id="erase" class="button">Erase</span>
+    </div>
+        <div class="input2">
+        <span id="save" class="button">Save</span>
+    </div>
+        <div class="input2">
+        <span id="reset" class="button">Reset</span>
+    </div>
+</div>
+
+<script>
+    
+    $(function(){
+        
+        
+        $("#slider").slider({
+            min: 3,
+            max: 30,
+            slide: function(event, ui){
+                $("#circle").height(ui.value);
+                $("#circle").width(ui.value);
+            }
+        });
+        
+        var paint = false;
+        var paint_erase = "paint";
+        var canvas = document.getElementById("paint");
+        var context = canvas.getContext("2d");
+        var container = $("#container");
+        var mouse = {x: 0, y: 0};
+        
+        context.lineWidth = 3;
+//        context.strokeStyle = "#42e565";
+        context.lineCap = "round";
+        context.lineJoin = "round";
+        
+        
+        container.mousedown(function(e){
+            paint = true;
+            context.beginPath();
+            mouse.x = e.pageX - this.offsetLeft;
+            mouse.y = e.pageY - this.offsetTop;
+            context.moveTo(mouse.x,mouse.y);
+        });
+          
+        container.mousemove(function(e){
+            mouse.x = e.pageX - this.offsetLeft;
+            mouse.y = e.pageY - this.offsetTop;
+            if (paint == true){
+                if (paint_erase == "paint"){
+                    context.strokeStyle = $("#paintColour").val();
+                }else{
+                    context.strokeStyle = "#fff";
+                }
+                context.lineTo(mouse.x,mouse.y);
+                context.stroke();
+            }
+        }); 
+        
+        container.mouseup(function(){
+           paint = false;             
+        });
+
+        container.mouseleave(function(){
+           paint = false;             
+        });
+        
+        $("#erase").click(function(){
+           if (paint_erase == "paint"){
+               paint_erase = "erase";
+           } else {
+               paint_erase = "paint";
+           }
+            $(this).toggleClass("eraseMode");
+        });
+
+        $("#reset").click(function(){
+            context.clearRect(0,0, 500, 400); 
+            paint_erase = "paint";
+            $("#erase").removeClass("eraseMode");
+        });
+
+        if(localStorage.getItem("imgCanvas") != null){
+//            window.alert(localStorage.getItem("imgCanvas"));
+            var img = new Image();
+            img.onload = function(){
+                context.drawImage(img, 0,0);
+            };
+            img.src = localStorage.getItem("imgCanvas");
+//            window.alert("x is eqal to "+localStorage.getItem("x"));
+        };
+        
+        $("#save").click(function(){
+           if (typeof(localStorage) != null){
+                localStorage.setItem("imgCanvas",canvas.toDataURL());
+//               window.alert(localStorage.getItem("imgCanvas"));
+                } else {
+                window.alert("your browser does not supprt local storage");
+                }; 
+        });
+        
+        $("#slider").slider({
+            min: 3,
+            max: 30,
+            slide: function(event, ui){
+                $("#circle").height(ui.value);
+                $("#circle").width(ui.value);
+                context.lineWidth = ui.value;
+            }
+        });
+        
+        $("#paintColour").change(function(){
+            $("#circle").css("background-color", $(this).val());
+        });
+        
+
+
+        
+    });
+    
+    
+    
+</script>
+
+
+
+</body>
+</html>

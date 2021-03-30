@@ -1,0 +1,86 @@
+
+#logo {
+    height: 35px;
+    width: 35px
+}
+
+.row img{
+/*    width: 100px;*/
+    height: 100px;
+    margin-bottom: 20px
+    
+}
+
+.row div{
+    text-align: center;
+    color: white;
+    padding: 50px 0;
+    font-size: 15px
+}
+
+nav li {
+    padding: 10px 0px;
+    color: white;
+    font-size: 17px;
+    margin-right: 35px;
+}
+
+nav li:hover{
+    border-bottom: 2px solid #00ffb8;
+    padding-bottom: 7px;
+    cursor: pointer;
+}
+
+body {
+    background: url(https://freenaturestock.s3.us-east-1.amazonaws.com/232.jpg) no-repeat center center fixed;
+    background-size: cover;
+    font-family: Arvo, Serif;
+}
+
+.navbar-dark {
+    background-color: rgba(0,0,0,0.5)
+}
+
+
+.navbar {
+    padding: 0 15px;
+}
+
+.jumbotron {
+    background-color: transparent;
+    letter-spacing: 2.5px;
+    margin: 50px 0px 0 0;
+    padding: 10px;
+    text-align: center;
+    color: white;
+    font-size: 50px;
+}
+
+.footer {
+    background-color: rgba(0,0,0,0.5);
+    position:fixed;
+    bottom: 0px;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    color: white
+}
+
+.btn {
+    width: 250px;
+    background-color: rgba(0, 255, 184, 0.5);
+    border-radius: 10px
+}
+
+@media (max-width: 768px){
+    
+    .row img{
+        height: 70px;
+        margin-bottom: 20px
+    }
+
+    .jumbotron {
+        font-size: 30px;
+    }
+    
+}

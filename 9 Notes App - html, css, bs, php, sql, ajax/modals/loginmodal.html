@@ -1,0 +1,61 @@
+     <form action="" method="post" id="loginform">
+      <div class="modal" id="loginmodal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+             <h4 class="modal-title" id="myModalLabel">
+                Login: 
+              </h4>
+              <button type="button" class="close" data-dismiss="modal">
+               &times;                
+              </button>
+          </div>
+          <div class="modal-body form-group">
+          
+           <div id="loginmessage"></div>
+           
+            <label for="loginemail">
+              Email:
+            </label>
+            <input type="email" name="loginemail" id="loginemail" class="form-control">
+            
+            <label for="loginpassword">
+              Password:
+            </label>
+            <input type="password" name="loginpassword" id="loginpassword" class="form-control">
+            
+            <div class="checkbox">
+                <label>
+                   <input type="checkbox" name="rememberme" id="rememberme">
+                    Remember Me
+                </label>
+                <label class="float-right">
+                    <a href="#forgotpasswordmodal" data-toggle="modal" data-dismiss="modal"  style="cursor: pointer">
+                    Forgot Password?
+                    </a>                    
+                </label>
+                
+                
+            </div>
+            
+            
+            
+          </div>
+          
+          <div class="modal-footer">
+           <button class="btn green mr-auto" type="button" data-target="#signupmodal" data-toggle="modal" data-dismiss="modal">
+           Sign Up
+           </button>
+           
+            <button type="button" class="btn btn-default" data-dismiss="modal">
+              Close
+            </button>
+            <button type="submit" name="login" class="btn btn-primary" value="login">
+              Log in
+            </button>
+          </div>
+          
+      </div>
+       </div>
+       </div>
+        </form>

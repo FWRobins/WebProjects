@@ -1,0 +1,134 @@
+<!doctype html>
+<html>
+<head>
+	<script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+	<script
+  src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
+  integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
+  crossorigin="anonymous"></script>
+
+	<style>
+		
+		body{
+		margin:0;
+		padding:10px;
+		}
+		
+		.drag{
+		width:50px;
+		height:50px;
+		background:blue;
+		margin:10px;
+		border-radius:50%;
+		float:left;
+		}
+		
+		.drag2{
+		width:50px;
+		height:50px;
+		background:red;
+		margin:10px;
+		border-radius:50%;
+		float:right;
+		}
+		
+		img{
+		display:block;
+		width:278px;
+		margin:auto;
+		}		
+		
+		h1{
+		text-align:center;
+		display:block;
+		}		
+		
+		.nav{
+		list-style-type:none;
+		text-align:center;
+		padding:0;
+		margin:0;
+		}
+		.nav li{
+		display:inline-block;
+		width:30%;
+		}
+		.roll{
+		height:75px;
+		width:99%;
+		vertical-align:bottom;
+		}
+		.w1{
+		border-style:solid;
+		height:75px;
+		border-color:blue;
+		width:100%;
+		}
+		.w2{
+		border-style:solid;
+		height:75px;
+		border-color:red;
+		width:100%;
+		}
+
+	
+	</style>
+	<script>
+		function dice(){
+		var x = 0;
+		var d1 = Math.round(Math.random())
+		var d2 = Math.round(Math.random())
+		var d3 = Math.round(Math.random())
+		var d4 = Math.round(Math.random())
+		return x = x + d1 + d2 + d3 + d4
+		}
+		
+		$(document).ready(function(){
+			$(function(){
+				$(".drag").draggable();
+			});
+			$(function(){
+				$(".drag2").draggable();
+			});
+			$(".roll").click(function(){
+				$("h1").fadeTo("slow", 0.0, function(){
+				$("h1").text(dice())
+				})				
+				$("h1").fadeTo("slow", 1.0);
+			});
+			
+		});
+	
+	</script>
+	
+</head>
+<body>
+	<ul class="nav">
+		<li><div class="w1"></div></li>
+		<li><button class="roll">ROLL THE DICE!</button></li>
+		<li><div class="w2"></div></li>
+	</ul>
+	<h1>no roll</h1>
+	
+
+	<img src="royalgameofur.png">
+	<div class="drag"></div>
+	<div class="drag"></div>
+	<div class="drag"></div>
+	<div class="drag"></div>
+	<div class="drag"></div>
+	<div class="drag"></div>
+	<div class="drag"></div>
+	<div class="drag2"></div>
+	<div class="drag2"></div>
+	<div class="drag2"></div>
+	<div class="drag2"></div>
+	<div class="drag2"></div>
+	<div class="drag2"></div>
+	<div class="drag2"></div>
+	
+</body>
+</html>

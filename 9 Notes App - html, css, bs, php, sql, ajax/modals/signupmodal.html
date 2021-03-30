@@ -1,0 +1,47 @@
+     <form action="" method="post" id="signupform">
+      <div class="modal" id="signupmodal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+             <h4 class="modal-title" id="myModalLabel">
+                Sign up Today: 
+              </h4>
+              <button type="button" class="close" data-dismiss="modal">
+               &times;                
+              </button>
+          </div>
+          <div class="modal-body form-group">
+           <div id="signupmessage"></div>
+            <label for="username">
+              Username:
+            </label>
+            <input type="text" name="username" id="username" class="form-control" maxlength="30">
+            
+            <label for="email">
+              Email Address:
+            </label>
+            <input type="email" name="email" id="email" class="form-control" maxlength="50">
+            
+            <label for="password">
+              Password:
+            </label>
+            <input type="password" name="password" id="password" class="form-control" maxlength="30">
+            
+            <label for="password2">
+              Confirm Password:
+            </label>
+            <input type="password" name="password2" id="password2" class="form-control" maxlength="30">
+            
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">
+              Close
+            </button>
+            <button type="submit" name="signup" class="btn btn-primary" value="signup" >
+              Send
+            </button>
+          </div>
+      </div>
+       </div>
+       </div>
+        </form>

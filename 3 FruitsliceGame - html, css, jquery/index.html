@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../../../favicon.ico">
+    <title>Starter Template · Bootstrap</title>
+    
+    <!--Template based on URL below-->
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/starter-template/">
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Place your stylesheet here-->
+<!--    <link href="/css/stylesheet.css" rel="stylesheet" type="text/css">-->
+<style>
+    #gamebox{
+        box-shadow: 0 4px 0 0 blue;
+        width: 900px;
+        height: 800px;
+        background-color: skyblue;
+        border-radius: 15px;
+        margin: 10px auto;
+        position: relative;
+    }
+    #lives, #score{
+        box-shadow: 0 4px 0 0 orange;
+        height: 50px;
+        width: 100px;
+        background-color: yellow;        
+        margin: 20px;
+        position: absolute;
+    }
+    #score{
+        left: 760px;
+        text-align: center;
+        padding: 10px;
+        font-family: times;
+    }
+    #lives{
+      border-radius: 5px; 
+      display: none;
+      padding: 10px 8px;
+      
+    }
+    #gamefeild{
+        box-shadow: 0 4px 0 0 grey;
+        top: 100px;
+        height: 500px;
+        width: 800px;
+        background-color: white;
+        margin: 90px auto 0px;
+        position: relative;
+        overflow: hidden;
+    }
+    #name{
+        box-shadow: 0 4px 0 0 purple;
+        left:200px;
+        height: 75px;
+        width: 500px;        
+        background-color: mediumpurple;
+        margin: 110px auto 10px;
+/*        position: absolute;*/
+        text-align: center;
+        padding: 25px;
+        font-family: times;
+    }
+    #start{
+        box-shadow: 0 4px 0 0 grey;
+/*        left:400px;*/
+        height: 40px;
+        width: 110px;        
+        background-color: lightblue;
+        margin: 10px auto;
+/*        position: absolute;*/
+        text-align: center;
+        border-radius: 5px;
+        padding: 5px;
+        font-family: times;
+    }
+    #gOver{
+        left:150px;
+        top: 0px;
+        height: 300px;
+        width: 600px;        
+        background: linear-gradient(yellow,orangered);
+        margin: 200px auto;
+        position: absolute;
+        text-align: center;
+        font-size: 4em;
+        font-family: times;
+        padding: 40px;
+        z-index: 2;
+        position: absolute;
+        display: none;
+    }
+    .life{
+        width:25px;
+        height: 25px;
+    }
+    .fruit{
+        display: none;
+        position: absolute;
+    }
+
+    
+      
+	</style>
+
+<!--<script src="js/jquery-3.4.1.min.js"></script>-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>-->
+<!--    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>-->
+
+</head>
+
+<body>
+
+    <main >
+       <div id="gamebox">
+          <div id="lives"></div>
+          <div id="score">Score: <span id="scoreCounter">0</span></div>
+          <div id="gOver">Game Over <br> Your score is: <span id="scoreValue">0</span></div>
+          <div id="gamefeild">
+              <img src="" alt="" id="fruit1" class="fruit">
+          </div>
+          <div id="name">Catch Fruits</div>
+          <div id="start"><button id="startbutton">Start Game</button></div>
+          <audio id="slicesound">
+               <source src="audio/slicefruit.mp3">
+               <source src="audio/slicefruit.ogg">
+          </audio>
+          
+          
+          
+           
+           
+           
+       </div>
+        
+
+
+    </main><!-- /.container -->
+    <script>
+        $(document).ready(function(){        
+            
+            var playing = false;
+            var score = 0;
+            var lives = 3;
+            var action;
+            var rstep;
+            var fruits = ['apple', 'banana', 'cherries', 'grapes', 'mango', 'orange', 'peach', 'pear', 'watermelon']
+            
+            
+            //start or reste game
+            $("#startbutton").click(function(){
+                if (playing == true){
+                    location.reload();
+                } else {
+                    $("#gOver").hide();
+                    playing = true;
+                    score = 0;
+                    $("#scoreCounter").html(score);
+                    $("#lives").show();
+                    lives = 3;
+                    addLives();
+                    $("#startbutton").html('Reset Game');
+                    startAction();
+                    
+                }
+            });
+            
+            // populate remaining lives
+            function addLives(){
+                $("#lives").empty();
+                for(i=0;i<lives;i++){
+                        $("#lives").append("<image class='life' src='images/heart.png'></image> ");
+                    }
+            }
+            
+            //main game loop
+            function startAction(){
+                $(".fruit").show();
+                chooseFruit();
+                var leftpos = Math.floor(Math.random()*700);
+                $("#fruit1").css({'left': leftpos , 'top':-100});
+                rstep = (Math.floor(Math.random()*5))+1;
+                window.console.log(rstep);
+                action = setInterval(function(){
+                    $("#fruit1").css('top', $("#fruit1").position().top + rstep);
+                    if ($("#fruit1").position().top > $("#gamefeild").height()){
+                        if (lives > 1){
+                            lives --;
+                            addLives();
+                            $(".fruit").show();
+                            chooseFruit();
+                            var leftpos = Math.floor(Math.random()*700);
+                            $("#fruit1").css({'left': leftpos , 'top':-100});
+                            rstep = (Math.floor(Math.random()*5))+1;
+                        } else {
+                            $("#startbutton").html('Start Game');
+                            $("#lives").hide();
+                            $("#gOver").show();
+                            playing = false;
+                            stopAction();
+                        };
+                    };
+                },10);
+            };
+            
+            //choose random fruit img
+            function chooseFruit(){
+                var rfruit = Math.floor(Math.random()*fruits.length);
+                $("#fruit1").attr('src', 'images/'+fruits[rfruit]+'.png');
+            };
+            
+            // kill main game loop
+            function stopAction(){
+                clearInterval(action);
+                $("#fruit1").hide();
+            };
+            
+            //fruit slicing actions
+            $("#fruit1").mouseover(function(){
+                score ++;
+                $("#scoreValue").html(score);
+                $("#scoreCounter").html(score);
+//                document.getElementById("slicesound").play();
+                $("#slicesound")[0].play(); //playsound
+                clearInterval(action);
+                $("#fruit1").hide("explode", 500);
+                setTimeout(startAction, 509);
+            });
+
+
+        });   
+
+
+    </script>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+<!--    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</body>
+</html>
